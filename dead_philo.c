@@ -6,7 +6,7 @@
 /*   By: msukri <msukri@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 13:00:25 by msukri            #+#    #+#             */
-/*   Updated: 2022/07/29 17:17:34 by msukri           ###   ########.fr       */
+/*   Updated: 2022/08/02 19:28:41 by msukri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_death(t_value *value, int i)
 	{
 		value->dying_philo = 1;
 		printf(GRN"%li "CYN"%d ", timer(), i + 1);
-		printf(RED"died""\n");
+		printf(RED"died"NC"\n");
 		pthread_mutex_unlock(&value->dead_mutex);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: msukri <msukri@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 11:49:22 by msukri            #+#    #+#             */
-/*   Updated: 2022/07/31 16:17:21 by msukri           ###   ########.fr       */
+/*   Updated: 2022/08/02 19:28:19 by msukri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ void	ft_output(t_value *value, int i, char *message)
 		if (!ft_strncmp(message, FORK_TAKEN, 8))
 		{
 			printf(GRN"%li "CYN"%d ", timer(), i + 1);
-			printf("has taken a "YEL"fork""\n");
+			printf(WHI"has taken a "YEL"fork"NC"\n");
 		}
 		else if (!ft_strncmp(message, EATING, 8))
 		{
 			printf(GRN"%li "CYN"%d ", timer(), i + 1);
-			printf("is "YEL"eating""\n");
+			printf(WHI"is "YEL"eating"NC"\n");
 		}
 		else
 			ft_output_1(i, message);
@@ -65,16 +65,16 @@ void	ft_output_1(int i, char *message)
 	if (!ft_strncmp(message, SLEEPING, 8))
 	{
 		printf(GRN"%li "CYN"%d ", timer(), i + 1);
-		printf("is "YEL"sleeping""\n");
+		printf(WHI"is "YEL"sleeping"NC"\n");
 	}
 	if (!ft_strncmp(message, THINKING, 8))
 	{
 		printf(GRN"%li "CYN"%d ", timer(), i + 1);
-		printf("is "YEL"thinking""\n");
+		printf(WHI"is "YEL"thinking"NC"\n");
 	}
 	if (!ft_strncmp(message, FULL, 8))
 	{
 		printf(GRN"%li "CYN"%d ", timer(), i + 1);
-		printf("is "GRN"full""\n");
+		printf(WHI"is "GRN"full"NC"\n");
 	}
 }

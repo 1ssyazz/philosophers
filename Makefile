@@ -8,15 +8,21 @@ SRC_MAIN	=	./create_thread.c \
 				./main.c \
 				./routine.c
 
-SRC_UTILS	=	./utils/ft_atoi.c \
-				./utils/ft_isnbr.c \
-				./utils/ft_putnbr_fd.c \
-				./utils/ft_putstr_fd.c \
-				./utils/ft_strncmp.c
+SRC_UTILS	=	ft_atoi.c \
+				ft_isnbr.c \
+				ft_putnbr_fd.c \
+				ft_putstr_fd.c \
+				ft_strncmp.c
+
+OBJS_DIR		=	objs/
+OBJS_UTILS_DIR	=	utils/objs/
+SRC_UTILS_DIR	=	utils/
 
 OBJS_MAIN	=	${SRC_MAIN:.c=.o}
+OBJECTS_PREFIXED	=	${addprefix $(OBJS_DIR), $(OBJS_MAIN)}
 
 OBJS_UTILS	=	${SRC_UTILS:.c=.o}
+OBJECTS_UTILS_PREFIXED	=	${addprefix $(OBJS_UTILS_DIR), $(OBJS_UTILS)}
 
 INCLUDE		=	./philo.h
 
@@ -24,20 +30,25 @@ CFLAGS		=	-Wall -Wextra -Werror -g -pthread -g -fsanitize=address
 
 CC			=	gcc -g3
 
-RM			=	rm -f
+RM			=	rm -rf
 
 NAME		=	philo
 
 all:		${NAME}
 
-%.o		:	%.c
+${OBJS_DIR}%.o		:	%.c
+				@mkdir -p ${OBJS_DIR}
 				${CC} ${CFLAGS} -c $< -o $@
 
-${NAME}	:	${OBJS_MAIN} ${OBJS_UTILS}
-			${CC} ${OBJS_MAIN} ${OBJS_UTILS} ${CFLAGS} -I${INCLUDE} -o ${NAME}
+${OBJS_UTILS_DIR}%.o		:	${SRC_UTILS_DIR}%.c
+				@mkdir -p ${OBJS_UTILS_DIR}
+				${CC} ${CFLAGS} -c $< -o $@
+
+${NAME}	:	${OBJECTS_PREFIXED} ${OBJECTS_UTILS_PREFIXED}
+			${CC} ${OBJECTS_PREFIXED} ${OBJECTS_UTILS_PREFIXED} ${CFLAGS} -I${INCLUDE} -o ${NAME}
 
 clean	:
-				${RM} ${OBJS_MAIN} ${OBJS_UTILS}
+				${RM} ${OBJECTS_PREFIXED} ${OBJECTS_UTILS_PREFIXED} ${OBJS_DIR} ${OBJS_UTILS_DIR}
 
 fclean	:	clean
 				${RM} ${NAME}

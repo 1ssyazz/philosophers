@@ -6,7 +6,7 @@
 /*   By: msukri <msukri@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 14:53:59 by msukri            #+#    #+#             */
-/*   Updated: 2022/07/29 17:23:11 by msukri           ###   ########.fr       */
+/*   Updated: 2022/08/02 19:23:25 by msukri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # define GRN "\x1B[32m"
 # define YEL "\x1B[33m"
 # define CYN "\x1B[36m"
+# define WHI "\x1B[37m"
+# define NC "\x1B[0m"
 
 typedef struct s_value
 {
