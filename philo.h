@@ -6,7 +6,7 @@
 /*   By: msukri <msukri@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 14:53:59 by msukri            #+#    #+#             */
-/*   Updated: 2022/08/02 19:23:25 by msukri           ###   ########.fr       */
+/*   Updated: 2022/08/11 16:37:53 by msukri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_value
 	pthread_mutex_t	*mutex;
 	int				*lock;
 	pthread_mutex_t	dead_mutex;
+	pthread_mutex_t	dying;
 }				t_value;
 
 typedef struct s_thread
@@ -64,7 +65,7 @@ void		*routine(void *thread);
 
 int			ft_wait_fork(void *thread, t_value *value, int i);
 int			ft_eating(void *thread, t_value *value, int i);
-int			ft_unlock_forks(void *thread, t_value *value, int i);
+int			ft_unlock_forks(t_value *value, int i);
 int			ft_sleeping(void *thread, t_value *value, int i);
 
 void		ft_output(t_value *value, int i, char *message);
@@ -84,5 +85,10 @@ void		ft_putnbr_fd(int n, int fd);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 
 void		ft_free_data(t_value *value);
+
+int			ft_dying(t_value *value);
+int			ft_forks(t_value *value, int i);
+int			ft_forks1(t_value *value, int i);
+int			ft_mutex_init(t_value *value);
 
 #endif

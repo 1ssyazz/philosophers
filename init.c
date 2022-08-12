@@ -6,7 +6,7 @@
 /*   By: msukri <msukri@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:52:26 by msukri            #+#    #+#             */
-/*   Updated: 2022/07/29 17:31:58 by msukri           ###   ########.fr       */
+/*   Updated: 2022/08/11 16:37:41 by msukri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	ft_init_value(t_value *value)
 
 int	ft_value_setup(t_value *value, int argc, char **argv)
 {
-	int	i;
-
 	value->philo = ft_atoi(argv[1]);
 	value->time_to_die = ft_atoi(argv[2]);
 	value->time_to_eat = ft_atoi(argv[3]);
@@ -41,6 +39,15 @@ int	ft_value_setup(t_value *value, int argc, char **argv)
 	value->lock = malloc(sizeof(int) * (value->philo));
 	if ((!value->lock))
 		return (0);
+	if (ft_mutex_init(value) == 0)
+		return (0);
+	return (1);
+}
+
+int	ft_mutex_init(t_value *value)
+{
+	int	i;
+
 	i = -1;
 	while (++i < value->philo)
 	{
@@ -48,6 +55,8 @@ int	ft_value_setup(t_value *value, int argc, char **argv)
 			return (0);
 		value->lock[i] = -1;
 	}
+	if (pthread_mutex_init(&(value->dying), NULL) != 0)
+		return (0);
 	return (!(pthread_mutex_init(&(value->dead_mutex), NULL) != 0));
 }
 

@@ -6,7 +6,7 @@
 /*   By: msukri <msukri@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 11:49:22 by msukri            #+#    #+#             */
-/*   Updated: 2022/08/02 20:40:39 by msukri           ###   ########.fr       */
+/*   Updated: 2022/08/11 16:25:45 by msukri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*routine(void *thread)
 			break ;
 		if (!ft_eating(thread, value, i))
 			break ;
-		if (!ft_unlock_forks(thread, value, i))
+		if (!ft_unlock_forks(value, i))
 			break ;
 		if (!ft_sleeping(thread, value, i))
 			break ;
@@ -42,7 +42,7 @@ void	*routine(void *thread)
 void	ft_output(t_value *value, int i, char *message)
 {
 	pthread_mutex_lock(&value->dead_mutex);
-	if (!value->dying_philo)
+	if (!(ft_dying(value)))
 	{
 		if (!ft_strncmp(message, FORK_TAKEN, 8))
 		{

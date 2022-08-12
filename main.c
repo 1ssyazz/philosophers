@@ -6,7 +6,7 @@
 /*   By: msukri <msukri@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 14:50:28 by msukri            #+#    #+#             */
-/*   Updated: 2022/08/02 20:13:29 by msukri           ###   ########.fr       */
+/*   Updated: 2022/08/11 14:02:32 by msukri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(int argc, char **argv)
 	while (i++ < value.philo)
 		pthread_mutex_destroy(&(value.mutex[i]));
 	pthread_mutex_destroy(&(value.dead_mutex));
+	pthread_mutex_destroy(&(value.dying));
 	ft_free_data(&value);
 	return (0);
 }

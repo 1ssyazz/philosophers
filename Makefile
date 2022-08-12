@@ -26,7 +26,7 @@ OBJECTS_UTILS_PREFIXED	=	${addprefix $(OBJS_UTILS_DIR), $(OBJS_UTILS)}
 
 INCLUDE		=	./philo.h
 
-CFLAGS		=	-Wall -Wextra -Werror -g -pthread -g -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -g -pthread -fsanitize=address
 
 CC			=	gcc -g3
 
